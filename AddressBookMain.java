@@ -1,27 +1,50 @@
+import java.util.Scanner;
+
 public class AddressBookMain {
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Address Book Program in Java");
-    
-        Contact person = new Contact();
 
-        person.firstName = "Yanshi";
-        person.lastName = "Agarwal";
-        person.address = "Mathura Road";
-        person.city = "Mathura";
-        person.state = "Uttar Pradesh";
-        person.zip = "281001";
-        person.phoneNumber = "9876543210";
-        person.email = "yanshi@gmail.com";
+        System.out.println("Welcome to Address Book System");
 
-        System.out.println("First Name : " + person.firstName);
-        System.out.println("Last Name : " + person.lastName);
-        System.out.println("Address : " + person.address);
-        System.out.println("City : " + person.city);
-        System.out.println("State : " + person.state);
-        System.out.println("Zip : " + person.zip);
-        System.out.println("Phone Number : " + person.phoneNumber);
-        System.out.println("Email : " + person.email);
+        Scanner sc = new Scanner(System.in);
+
+        AddressBook addressBook = new AddressBook();
+
+        System.out.print("Enter First Name: ");
+        addressBook.person.firstName = sc.nextLine();
+
+        System.out.print("Enter Last Name: ");
+        addressBook.person.lastName = sc.nextLine();
+
+        System.out.print("Enter Address: ");
+        addressBook.person.address = sc.nextLine();
+
+        System.out.print("Enter City: ");
+        addressBook.person.city = sc.nextLine();
+
+        System.out.print("Enter State: ");
+        addressBook.person.state = sc.nextLine();
+
+        System.out.print("Enter Zip: ");
+        addressBook.person.zip = sc.nextLine();
+
+        System.out.print("Enter Phone Number: ");
+        addressBook.person.phoneNumber = sc.nextLine();
+
+        System.out.print("Enter Email: ");
+        addressBook.person.email = sc.nextLine();
+
+        System.out.println("\nContact Added Successfully!");
+
+        System.out.println("First Name: " + addressBook.person.firstName);
+        System.out.println("Last Name: " + addressBook.person.lastName);
+        System.out.println("Address: " + addressBook.person.address);
+        System.out.println("City: " + addressBook.person.city);
+        System.out.println("State: " + addressBook.person.state);
+        System.out.println("Zip: " + addressBook.person.zip);
+        System.out.println("Phone: " + addressBook.person.phoneNumber);
+        System.out.println("Email: " + addressBook.person.email);
+
+        sc.close();
     }
-
 }
