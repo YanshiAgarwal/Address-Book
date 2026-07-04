@@ -2,20 +2,18 @@ public class AddressBookMain {
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Address Book Program in Java");
+        System.out.println("Welcome to Address Book System");
 
         AddressBook addressBook = new AddressBook();
 
-        // UC2
-        addressBook.addContact();
+        System.out.print("How many contacts do you want to add? ");
+        int n = addressBook.sc.nextInt();
+        addressBook.sc.nextLine();
 
-        // UC3
-        addressBook.editContact();
+        for (int i = 0; i < n; i++) {
+            addressBook.addContact();
+        }
 
-        // UC4
-        addressBook.deleteContact();
-
-        // Display updated contact
-        addressBook.displayContact();
+        addressBook.displayContacts();
     }
 }

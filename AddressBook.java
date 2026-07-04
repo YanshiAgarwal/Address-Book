@@ -1,12 +1,15 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
 
-    Contact person = new Contact();
+    ArrayList<Contact> contacts = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
-    // UC2
+    // UC2 & UC5
     public void addContact() {
+
+        Contact person = new Contact();
 
         System.out.print("Enter First Name: ");
         person.firstName = sc.nextLine();
@@ -32,80 +35,100 @@ public class AddressBook {
         System.out.print("Enter Email: ");
         person.email = sc.nextLine();
 
-        System.out.println("Contact Added Successfully!");
+        contacts.add(person);
+
+        System.out.println("\nContact Added Successfully!\n");
     }
 
     // UC3
     public void editContact() {
 
-        System.out.print("\nEnter First Name to Edit: ");
+        System.out.print("Enter First Name to Edit: ");
         String name = sc.nextLine();
 
-        if (person.firstName.equals(name)) {
+        boolean found = false;
 
-            System.out.println("Contact Found!");
+        for (Contact person : contacts) {
 
-            System.out.print("Enter New Address: ");
-            person.address = sc.nextLine();
+            if (person.firstName.equalsIgnoreCase(name)) {
 
-            System.out.print("Enter New City: ");
-            person.city = sc.nextLine();
+                found = true;
 
-            System.out.print("Enter New State: ");
-            person.state = sc.nextLine();
+                System.out.print("Enter New Address: ");
+                person.address = sc.nextLine();
 
-            System.out.print("Enter New Zip: ");
-            person.zip = sc.nextLine();
+                System.out.print("Enter New City: ");
+                person.city = sc.nextLine();
 
-            System.out.print("Enter New Phone Number: ");
-            person.phoneNumber = sc.nextLine();
+                System.out.print("Enter New State: ");
+                person.state = sc.nextLine();
 
-            System.out.print("Enter New Email: ");
-            person.email = sc.nextLine();
+                System.out.print("Enter New Zip: ");
+                person.zip = sc.nextLine();
 
-            System.out.println("Contact Updated Successfully!");
+                System.out.print("Enter New Phone Number: ");
+                person.phoneNumber = sc.nextLine();
 
-        } else {
+                System.out.print("Enter New Email: ");
+                person.email = sc.nextLine();
 
+                System.out.println("Contact Updated Successfully!");
+                break;
+            }
+        }
+
+        if (!found) {
             System.out.println("Contact Not Found!");
-
         }
     }
 
-    //UC4
+    // UC4
     public void deleteContact() {
 
         System.out.print("Enter First Name to Delete: ");
         String name = sc.nextLine();
 
-        if (person.firstName.equals(name)) {
+        boolean found = false;
 
-            person.firstName = null;
-            person.lastName = null;
-            person.address = null;
-            person.city = null;
-            person.state = null;
-            person.zip = null;
-            person.phoneNumber = null;
-            person.email = null;
+        for (int i = 0; i < contacts.size(); i++) {
 
-            System.out.println("Contact Deleted Successfully!");
-        } 
-        else {
+            if (contacts.get(i).firstName.equalsIgnoreCase(name)) {
+
+                contacts.remove(i);
+
+                found = true;
+
+                System.out.println("Contact Deleted Successfully!");
+                break;
+            }
+        }
+
+        if (!found) {
             System.out.println("Contact Not Found!");
         }
     }
 
-    public void displayContact() {
+    // Display all contacts
+    public void displayContacts() {
 
-        System.out.println("\n----- Contact Details -----");
-        System.out.println("First Name : " + person.firstName);
-        System.out.println("Last Name : " + person.lastName);
-        System.out.println("Address : " + person.address);
-        System.out.println("City : " + person.city);
-        System.out.println("State : " + person.state);
-        System.out.println("Zip : " + person.zip);
-        System.out.println("Phone : " + person.phoneNumber);
-        System.out.println("Email : " + person.email);
+        if (contacts.isEmpty()) {
+            System.out.println("Address Book is Empty.");
+            return;
+        }
+
+        System.out.println("\n===== Contact List =====");
+
+        for (Contact person : contacts) {
+
+            System.out.println("-----------------------------");
+            System.out.println("First Name : " + person.firstName);
+            System.out.println("Last Name  : " + person.lastName);
+            System.out.println("Address    : " + person.address);
+            System.out.println("City       : " + person.city);
+            System.out.println("State      : " + person.state);
+            System.out.println("Zip        : " + person.zip);
+            System.out.println("Phone      : " + person.phoneNumber);
+            System.out.println("Email      : " + person.email);
+        }
     }
 }
